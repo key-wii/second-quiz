@@ -6,17 +6,14 @@
 
 void shuffle(int array[3][3], size_t n)
 {
-    if (n > 1) 
-    {
-        size_t i;
-        for (i = 0; i < 3 - 1; i++) 
-        {
-            for(int j = 0; j < 3; j++) {
-                size_t k = i + rand() / (RAND_MAX / (3 * 3));
-                int t = array[i][j];
-                array[i][k] = array[i][i];
-                array[i][i] = t;
-            }
+    int ran, ran2;
+    for (int i=0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            ran = rand() % 3;
+            ran2 = rand() % 3;
+            int temp =  array[i][j];
+            array[i][j] =  array[ran][j];
+            array[ran][j] = temp;
         }
     }
 }
@@ -39,10 +36,10 @@ int main() {
    printf("Two Dimensional array elements:\n");
    for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
-         printf("%d ", magicSquare[i][j]);
-         if (j == 3 - 1) {
-            printf("\n");
-         }
+        if (j == 0) printf("[");
+        printf("%d", magicSquare[i][j]);
+        if (j != 3 - 1) printf(" ");
+        if (j == 3 - 1) printf("]\n");
       }
    }
 
